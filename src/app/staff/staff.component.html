@@ -17,7 +17,7 @@
         <div class="col-sm-8">
           <div class="card">
             <div class="card-body">
-              <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+              <form [formGroup]="myForm">
                 <div class="form-row">
 
                   <div class="form-group col-10" style="display:flex; flex-direction: row;">
@@ -94,7 +94,8 @@
                   </div>
                 </div>
                 <div class="text-right">
-                  <button class="btn btn-primary pull-right">Submit</button>
+                  <button class="btn btn-primary" *ngIf='ischecked' (click)="update()">Update</button>
+                  <button class="btn btn-primary pull-right" *ngIf='!ischecked' (click)="onSubmit()">Submit</button>
                 </div>
               </form>
 
@@ -117,68 +118,37 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor='let member of members'>
                 <th scope="row">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <div class="input-group-text" style="background-color: rgba(0, 0, 0, 0);">
-                        <input type="checkbox" aria-label="Checkbox for following text input">
+                        <input type="checkbox" aria-label="Checkbox for following text input" value="member.id" (change)="onChange(member.id,$event.target.checked)">
+                        
                       </div>
                     </div>
                     
                   </div>
                 </th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
+                <td>{{member.employeeId}}</td>
+                <td>{{member.epfNo}}</td>
+                <td>{{member.name}}</td>
+                <td>{{member.nicNo}}</td>
+                <td>{{member.phoneNo}}</td>
               </tr>
-              <tr>
-                <th scope="row">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text" style="background-color: rgba(0, 0, 0, 0);">
-                        <input type="checkbox" aria-label="Checkbox for following text input">
-                      </div>
-                    </div>
-                    
-                  </div>
-                </th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text" style="background-color: rgba(0, 0, 0, 0);">
-                        <input type="checkbox" aria-label="Checkbox for following text input">
-                      </div>
-                    </div>
-                    
-                  </div>
-                </th>
-                <td>Larry the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-              </tr>
+
+              
             </tbody>
           </table>
         </div>
         <div class="col-sm-4">
           <div style="position: absolute;left: 0;bottom: 0;margin-left: 20%;">
             <div>
-              <button class="btn btn-primary">Update</button>
+              <button class="btn btn-primary" (click)="updateEmployee()">Update</button>
             </div>
             <br>
             <div>
-              <button class="btn btn-primary">Delete</button>
+              <button class="btn btn-primary" (click)="deleteEmployee()">Delete</button>
             </div>
           </div>
           

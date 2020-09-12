@@ -20,8 +20,8 @@
                 </div>
                 <div class="col-sm-4">
                     <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="transactionId" name="transactionId">
+                        <button class="btn btn-success my-2 my-sm-0" type="submit" (click)="search()">Search</button>
                     </form>
                 </div>
 
@@ -39,7 +39,7 @@
                                         <label>Date</label>
                                     </div>
                                     <div>
-                                        ...................
+                                        {{transaction?.Date}}
                                     </div>
 
 
@@ -49,7 +49,7 @@
                                         <label>Transaction No</label>
                                     </div>
                                     <div>
-                                        ...................
+                                        {{transaction?.transactionNo}}
                                     </div>
 
 
@@ -59,7 +59,7 @@
                                         <label>Transaction Type</label>
                                     </div>
                                     <div>
-                                        ...................
+                                        {{transaction?.transactionType}}
                                     </div>
 
 
@@ -69,7 +69,7 @@
                                         <label>Location</label>
                                     </div>
                                     <div>
-                                        ...................
+                                        {{transaction?.location}}
                                     </div>
 
 
@@ -79,7 +79,7 @@
                                         <label>Quantity</label>
                                     </div>
                                     <div>
-                                        ...................
+                                        {{transaction?.quantity}}
                                     </div>
 
 
@@ -124,7 +124,7 @@
                         <div style="position: absolute;left: 0;bottom: 0;margin-left: 20%;">
 
                             <div>
-                                <button class="btn btn-primary">Add Staff Member</button>
+                                <button class="btn btn-primary" (click)="addStaffMember()">Add Staff Member</button>
                             </div>
                         </div>
 
