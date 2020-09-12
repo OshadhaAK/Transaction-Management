@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { StaffService } from '../services/staff.service';
+import { from } from 'rxjs';
 @Component({
   selector: 'app-staff',
   templateUrl: './staff.component.html',
@@ -11,7 +12,7 @@ export class StaffComponent implements OnInit {
   myForm: FormGroup;
   submitted = false;
 
-  constructor() {
+  constructor(private staffService: StaffService) {
     this.myForm = new FormGroup({
       employeeId: new FormControl(null, Validators.required), 
       name: new FormControl(null, Validators.required), 
@@ -36,5 +37,10 @@ export class StaffComponent implements OnInit {
 
     // display form values on success
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.myForm.value, null, 4));
+    this.staffService.submitForm(this.myForm.value).subscribe(data => {
+
+    },error => {
+      alert('NOT SUCCESS!! :-)\n\n' + JSON.stringify(this.myForm.value, null, 4));
+    });
 }
 }
